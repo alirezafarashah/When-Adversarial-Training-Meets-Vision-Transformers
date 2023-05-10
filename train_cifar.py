@@ -215,7 +215,7 @@ def train_adv(args, model, ds_train, ds_test, logger):
                     delta = torch.zeros_like(X).cuda()
                     if args.delta_init == 'random':
                         for i in range(len(epsilon)):
-                            delta[:, i, :, :].uniform_(-2*epsilon[i][0][0].item(), 2*epsilon[i][0][0].item())
+                            delta[:, i, :, :].uniform_(-epsilon[i][0][0].item(), epsilon[i][0][0].item())
                         delta.data = clamp(delta, lower_limit - X, upper_limit - X)
                     delta.requires_grad = True
                     for _ in range(1):
@@ -237,7 +237,7 @@ def train_adv(args, model, ds_train, ds_test, logger):
                         output = model(X + delta)
                         loss = criterion(output, y)
                         grad = torch.autograd.grad(loss, delta)[0].detach()
-                        delta.data = delta + alpha * torch.sign(grad)
+                        delta.data = clamp(delta + alpha * torch.sign(grad), -epsilon, epsilon)
                         delta.data = clamp(delta, lower_limit - X, upper_limit - X)
                     delta = delta.detach()
                     model.train()
