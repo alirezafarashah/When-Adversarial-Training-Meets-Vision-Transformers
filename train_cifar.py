@@ -161,7 +161,11 @@ def train_adv(args, model, ds_train, ds_test, logger):
         train_loss = 0
         train_acc = 0
         train_n = 0
-
+        print('Training epoch {} step {}/{}, lr {:.4f} loss {:.4f} acc {:.4f}'.format(
+                    epoch,  0, len(train_loader),
+                    opt.param_groups[0]['lr'],
+                           train_loss / train_n, train_acc / train_n
+                ))
         def train_step(X, y,t,mixup_fn):
             model.train()
             # drop_calculation
@@ -371,6 +375,11 @@ def train_adv(args, model, ds_train, ds_test, logger):
 
             if (step + 1) % args.log_interval == 0 or step + 1 == steps_per_epoch:
                 logger.info('Training epoch {} step {}/{}, lr {:.4f} loss {:.4f} acc {:.4f}'.format(
+                    epoch, step + 1, len(train_loader),
+                    opt.param_groups[0]['lr'],
+                           train_loss / train_n, train_acc / train_n
+                ))
+                print('Training epoch {} step {}/{}, lr {:.4f} loss {:.4f} acc {:.4f}'.format(
                     epoch, step + 1, len(train_loader),
                     opt.param_groups[0]['lr'],
                            train_loss / train_n, train_acc / train_n
