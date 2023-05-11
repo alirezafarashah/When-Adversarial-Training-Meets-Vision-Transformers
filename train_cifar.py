@@ -164,7 +164,7 @@ def train_adv(args, model, ds_train, ds_test, logger):
         print('Training epoch {} step {}/{}, lr {:.4f} loss {:.4f} acc {:.4f}'.format(
                     epoch,  0, len(train_loader),
                     opt.param_groups[0]['lr'],
-                           train_loss / train_n, train_acc / train_n
+                           train_loss / (train_n+1), train_acc / (train_n+1)
                 ))
         def train_step(X, y,t,mixup_fn):
             model.train()
