@@ -3,10 +3,10 @@ numpy
 torch
 torchvision
 clu==0.0.1-alpha.2
-flax==0.2.2
-ml_collections==0.1.0
-tensorflow-datasets==4.0.1
-tensorflow-probability==0.11.1
+flax
+ml_collections
+tensorflow-datasets
+tensorflow-probability
 oslo_concurrency
 appdirs
 git+https://github.com/fra31/auto-attack
