@@ -6,7 +6,7 @@ import os
 import sys
 import appdirs
 from oslo_concurrency import lockutils, processutils
-from collections import defaultdict, Sequence, namedtuple
+from collections.abc import defaultdict, Sequence, namedtuple
 
 logging.basicConfig(
     format='%(levelname)-8s %(asctime)-12s %(message)s',
