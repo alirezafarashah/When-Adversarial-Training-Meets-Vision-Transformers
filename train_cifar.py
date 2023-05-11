@@ -157,7 +157,7 @@ def train_adv(args, model, ds_train, ds_test, logger):
             return args.lr_max * 0.01
     epoch_s = 0
     evaluate_natural(args, model, test_loader, verbose=False)
-    for epoch in tqdm.tqdm(range(epoch_s + 1, args.epochs + 1)):
+    for epoch in range(epoch_s + 1, args.epochs + 1):
         train_loss = 0
         train_acc = 0
         train_n = 0
