@@ -353,7 +353,7 @@ def train_adv(args, model, ds_train, ds_test, logger):
                 acc = (output.max(1)[1] == y).float().mean()
             return loss, acc,y
 
-        for step, (X, y) in enumerate(train_loader):
+        for step, (X, y) in enumerate(tqdm.tqdm(train_loader)):
             batch_size = args.batch_size // args.accum_steps
             epoch_now = epoch - 1 + (step + 1) / len(train_loader)
             for t in range(args.accum_steps):
